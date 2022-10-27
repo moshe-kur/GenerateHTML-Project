@@ -1,5 +1,5 @@
 #include "LogFun.h"
-
+#pragma warning(disable:4996)
 
 char LogName[30];
 void startclean()

@@ -1,66 +1,79 @@
 #include "LogFun.h"
+#include "FileFun.h"
 #include "StructProcessFun.h"
+#include "ManyProcess.h"
 #pragma warning(disable:4996)
+	 
+
+struct SnapshotHeader* HeadSnapheder;
+struct Snapshot* NowSnap;
+
+
+
 int main()
 {
 	startclean();
 	Log("START LOG PROJECT");
-	//TO-DO איפוס משתנים של צבירות פרוססים ודיאלאלים ואיפוס איידי של משתנים
-	printf("START 1 SNAP\n");
-	struct Snapshot* first=MakeOneSnapshot();
-	printf("FINISH 1 SNAP\n");
-	printf("START 2 SNAP\n");
-	MakeOneSnapshot();
-	printf("FINISH 2 SNAP\n");
-	MakeOneSnapshot();
-
-	CurrSnap = first;
-	while (CurrSnap!=NULL)
-	{
-	printf("id snap: %d\nnum of process is:%d\n", CurrSnap->SnapshotID, CurrSnap->NumOfProcess);
-	CurrSnap = CurrSnap->Next;
-	}
-
-	Log("END LOG PROJECT");
 
 
-	/*
-	Head = NULL;
-	Tail = NULL;
+	printf("Hi Dear User \nWhat would you like to do?\n T-Take One SnapShot\n M-Make Generate HTML\n R-Reset ALL Snapshot Memory\n S-Save To File\n L-Load From File\n P-Print all list\n E-to EXIT\n");
 
-	struct Item* popedItem;
-
-	char userResponse = 0;
+	char userResponse =0;
 	while (userResponse != 'E')
 	{
-		printf("Hi Dear User \n What would you like to do?\n A-to add new item  P-Print all list R-Pop next item E-to exit");
-		userResponse = getchar();
+		
+		scanf(" %c", &userResponse);
 
 		switch (userResponse)
 		{
-		case 'A':
+		case 'T':
+			MakeOneSnapshot();
+			printf("One snapshot Add to list\n");
 
-			Push(rand(), rand());
 			break;
-		case 'P': PrintList();
+		case 'M':
+
 			break;
 		case 'R':
+			printf("%s", ResetAll());
+			
+			break;
+		case 'S':
+			MakeFileStruct();
 
-			//	popedItem = Pop();
+			break;
+		case 'L':
+			ReadFromFile();
+			break;
+		case 'P': 
+			if (HeadSnapheder!=NULL)
+			{
+				NowSnap = HeadSnapheder->HeadSnap;
+				while (NowSnap != NULL)
+				{
+					printf("id snap: %d\nnum of process is:%d\n", NowSnap->SnapshotID, NowSnap->NumOfProcess);
+					NowSnap = NowSnap->Next;
+				};
+			}
+			else
+			{
+				printf("The memory is empty!!\n");
 
-				//printf("Item %d %d %d", popedItem->id, popedItem->val, popedItem->val2);
-			free(popedItem);
+			}
 			break;
 		case 'E': printf("Thank you for use our Great service. See you next time. Drink only water\n");
+			//
 			break;
 
-		default:
-			printf("Wrong selection. Try be more sharp\n");
-			break;
+			
 		}
+				printf("\nHi Dear User \nWhat would you like to do?\n T-Take One SnapShot\n M-Make Generate HTML\n R-Reset ALL Snapshot Memory\n S-Save To File\n L-Load From File\n P-Print all list\n E-to EXIT\n");
 	}
 
-	*/
+	
+	//TO-DO איפוס משתנים של צבירות פרוססים ודיאלאלים ואיפוס איידי של משתנים
+	//struct Snapshot* first = Make20Loop(4);
 
+	Log("END LOG PROJECT");
 	return 0;
 }

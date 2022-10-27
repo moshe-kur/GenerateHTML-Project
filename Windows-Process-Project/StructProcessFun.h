@@ -54,18 +54,19 @@ struct Snapshot* MakeOneSnapshot();
 void MakeHeaderSnap();
 
 // extern ???
-struct SnapshotHeader* HeadSnapheder;
-struct Snapshot* CurrSnap;
-struct Snapshot* PrevSnap;
-struct ProcessDetails* CurrentProcess;
-struct ProcessDetails* LastProcess;
-struct Dlls* CurrDll;
-struct Dlls* PrevDll;
-int SnapNum;
-int ProcessNumber;
+
+extern struct SnapshotHeader* HeadSnapheder;
+extern struct Snapshot* CurrSnap;
+extern struct Snapshot* PrevSnap;
+extern struct ProcessDetails* CurrentProcess;
+extern struct ProcessDetails* LastProcess;
+extern struct Dlls* CurrDll;
+extern struct Dlls* PrevDll;
+extern int SnapNum;
+extern int ProcessNumber;
 
 //loop snap
 int LoopNumber;
 void MGetProcessesInfo(char choice);
 struct ProcessDetails MPrintMemoryInfo(DWORD processID);
-
+char* ResetAll();

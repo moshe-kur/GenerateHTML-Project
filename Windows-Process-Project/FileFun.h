@@ -5,3 +5,5 @@
 #pragma warning(disable:4996)
 
 
+void MakeFileStruct();
+void ReadFromFile();

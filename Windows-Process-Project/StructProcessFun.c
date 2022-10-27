@@ -2,7 +2,7 @@
 #include "StructProcessFun.h"
 #pragma warning(disable:4996)
 
-struct SnapshotHeader* HeadSnapheder=NULL;
+struct SnapshotHeader* HeadSnapheder =NULL;
 struct Snapshot* CurrSnap;
 struct Snapshot* PrevSnap;
 struct ProcessDetails* CurrentProcess;
@@ -10,7 +10,7 @@ struct ProcessDetails* LastProcess;
 struct Dlls* CurrDll;
 struct Dlls* PrevDll;
 int SnapNum=0;
-int ProcessNumber;
+int ProcessNumber =0;
 
 /*void add(struct ProcessDetails ret)
 {
@@ -124,7 +124,6 @@ struct Snapshot* MakeOneSnapshot()
 	{
 		PrintMemoryInfo(aProcesses[i]);
 	}
-	//printf("Num of process is: %lu", cProcesses);
 	
 	if (HeadSnapheder==NULL)
 	{
@@ -198,6 +197,7 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 
 		}
 		CurrentProcess->Next = NULL;
+		CurrentProcess->DllHead = NULL;
 		LastProcess = CurrentProcess;
 
 		//Get process name
@@ -222,12 +222,11 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 	}
 
 
-
 	// Get Dlls List
 	if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded))
 	{
 		int numDll = 0;
-		CurrentProcess->DllHead = NULL;
+		
 		for (int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++)
 		{
 			// Get the full path to the module's file.
@@ -263,10 +262,20 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 				sprintf(CurrDll->DllName, "%s", dllName);
 			}
 		}
+		if (numDll==0)
+		{
+			CurrentProcess->NumberOfDlls = numDll;
+			CurrentProcess->DllHead = NULL;
+		}
+		else
+		{
+
 		CurrentProcess->NumberOfDlls = numDll;
+		}
+
 		//printf("%s\n his id: %d,Have a %d Dlls\n", CurrentProcess->ProcesName, CurrentProcess->ProcessNumber, numDll);
 	}
-
+	//CurrentProcess->NumberOfDlls = numDll;
 	CloseHandle(hProcess);
 }
 
@@ -279,4 +288,62 @@ void MakeHeaderSnap()
 		return;
 	}
 
+}
+char* ResetAll() 
+{
+	if (HeadSnapheder==NULL)
+	{
+		return "Memory alredy clear\n";
+	}
+	else
+	{
+		CurrSnap = HeadSnapheder->HeadSnap;
+		while (CurrSnap)
+		{
+			CurrentProcess = CurrSnap->ProcessHead;
+			while (CurrentProcess)
+			{
+				CurrDll = CurrentProcess->DllHead;
+				while (CurrDll)
+				{
+					//clear all dll
+					if (CurrDll->Next!=NULL)
+					{
+						CurrDll = CurrDll->Next;
+						free(CurrDll->Prev);
+					}
+					else
+					{
+						free(CurrDll);
+						break;
+					}
+				}
+				//clear all process
+				if (CurrentProcess->Next!=NULL)
+				{
+					CurrentProcess = CurrentProcess->Next;
+						free(CurrentProcess->Prev);
+				}
+				else
+					{
+						free(CurrentProcess);
+						break;
+					}
+				}
+			if (CurrSnap->Next != NULL)
+			{
+				CurrSnap = CurrSnap->Next;
+				free(CurrSnap->Prev);
+			}
+			else
+			{
+				free(CurrSnap);
+				break;
+			}
+		}
+			free(HeadSnapheder);
+	}
+	HeadSnapheder = NULL;
+	SnapNum = 0;
+	return "Memory is clear now\n";
 }

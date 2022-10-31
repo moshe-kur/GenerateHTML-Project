@@ -1,4 +1,5 @@
 #include "LogFun.h"
+#include "StructProcessFun.h"
 #pragma warning(disable:4996)
 
 char LogName[30];

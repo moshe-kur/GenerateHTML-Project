@@ -10,87 +10,9 @@ struct ProcessDetails* LastProcess;
 struct Dlls* CurrDll;
 struct Dlls* PrevDll;
 int SnapNum=0;
-int ProcessNumber =0;
+int ProcessNumber;
 
-/*void add(struct ProcessDetails ret)
-{
-	ret = malloc(sizeof(struct ProcessDetails));
-	if (ret)
-	{
-		if (ProcessHead == NULL)
-		{
-			ProcessHead = ret;
-			ret->Prev = NULL;
-		}
-		else
-		{
-			LastProcess->Next = ret;
-		}
-		ret->Next = NULL;
-		LastProcess = ret;
-	}
-	else
-	{
-		//error to log - last error or memory error
-	}
-}*/
-/*struct Dictionary* search(int key)
-{
-	
-	currentProcess = Head;
-	while (currentProcess->key != key)
-	{
-		if (currentProcess->Next != NULL)
-		{
-			currentProcess = currentProcess->Next;
-		}
-		else
-		{
-			return NULL;
-		}
-	}
 
-	return currentProcess;
-	
-}*/
-/*void rremove(int key)
-{
-	
-	currentProcess = search(key);
-
-	if (currentProcess)
-	{
-		if (currentProcess == Head && currentProcess->Next == NULL)
-		{
-			free(currentProcess);
-		}
-		else if (currentProcess == Head)
-		{
-			Head = currentProcess->Next;
-			free(currentProcess);
-		}
-		else if (currentProcess->Next != NULL)
-		{
-			currentProcess->Next->Prev = currentProcess->Prev;
-			currentProcess->Prev->Next = currentProcess->Next;
-			free(currentProcess);
-		}
-		else if (currentProcess->Next == NULL)
-		{
-			currentProcess->Prev->Next = NULL;
-			free(currentProcess);
-		}
-	}
-
-	//פקודת הדפסת הפריט שנמצא
-	//להעביר לכאן את שחרור המצביע כדי שיהיה אפשר להדפיס אותו לפני שחרור
-
-	
-}*/
-/*void freeDictionary()
-{
-	//להוסיף פוקציה של לולאה שמשחררת האת הזיכרון של כל התאים
-}*/
 struct Snapshot* MakeOneSnapshot()
 {
 	// Get Processes
@@ -106,7 +28,6 @@ struct Snapshot* MakeOneSnapshot()
 		return 0;
 	}
 
-	// מספר הפרוססים שרצו במערכת שמור כאנסינג לונג
 	// Calculate how many process identifiers were returned.
 	cProcesses = cbNeeded / sizeof(DWORD);
 
@@ -184,7 +105,7 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 	if (GetProcessMemoryInfo(hProcess, &pmc, sizeof(pmc)))
 	{
 		CurrentProcess = (struct ProcessDetails*)malloc(sizeof(struct ProcessDetails));
-		//META-DATA
+		// process META-DATA
 		if (CurrSnap->ProcessHead == NULL)
 		{
 			CurrSnap->ProcessHead = CurrentProcess;
@@ -200,20 +121,24 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 		CurrentProcess->DllHead = NULL;
 		LastProcess = CurrentProcess;
 
+		//process DATA
+		
 		//Get process name
 		char ProcessName[MAX_PATH];
 		size_t numConverted;
 		wcstombs_s(&numConverted, ProcessName, MAX_PATH, tFoundProcessName, MAX_PATH);
+
 		// Add process name to the struct
 		sprintf(CurrentProcess->ProcesName, "%s", ProcessName);
-		//Add id to process struct
+
+		//Add time to process struct
+		strcpy(CurrentProcess->time, checkTime());
+
 		CurrentProcess->ProcessID = (int)processID;
 		CurrentProcess->SnapshotNumber = SnapNum;
 		ProcessNumber++;
 		CurrentProcess->ProcessNumber = ProcessNumber;
-		//Add time to process struct
-		strcpy(CurrentProcess->time, checkTime());
-		//DATA
+
 		CurrentProcess->pmc.PageFaultCount = pmc.PageFaultCount;
 		CurrentProcess->pmc.WorkingSetSize = pmc.WorkingSetSize;
 		CurrentProcess->pmc.QuotaPagedPoolUsage = pmc.QuotaPagedPoolUsage;
@@ -223,9 +148,9 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 
 
 	// Get Dlls List
+	int numDll = 0;
 	if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded))
 	{
-		int numDll = 0;
 		
 		for (int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++)
 		{
@@ -237,6 +162,14 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 				CurrDll = (struct Dlls*)malloc(sizeof(struct Dlls));
 			    numDll++;
 
+				//DATA
+				
+				// Convert wChar to regular char array (string)
+				char dllName[MAX_PATH];
+				size_t numConverted;
+				wcstombs_s(&numConverted, dllName, MAX_PATH, tFoundDllName, MAX_PATH);
+				sprintf(CurrDll->DllName, "%s", dllName);
+				//Add ID
 				CurrDll->DllID = numDll;
 
 				//META-DATA
@@ -254,26 +187,19 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 				CurrDll->Next = NULL;
 				PrevDll = CurrDll;
 
-				//DATA
-				// Convert wChar to regular char array (string)
-				char dllName[MAX_PATH];
-				size_t numConverted;
-				wcstombs_s(&numConverted, dllName, MAX_PATH, tFoundDllName, MAX_PATH);
-				sprintf(CurrDll->DllName, "%s", dllName);
 			}
 		}
-		if (numDll==0)
-		{
-			CurrentProcess->NumberOfDlls = numDll;
-			CurrentProcess->DllHead = NULL;
-		}
-		else
-		{
+		
+	}
+	if (numDll == 0)
+	{
+		CurrentProcess->NumberOfDlls = numDll;
+		CurrentProcess->DllHead = NULL;
+	}
+	else
+	{
 
 		CurrentProcess->NumberOfDlls = numDll;
-		}
-
-		//printf("%s\n his id: %d,Have a %d Dlls\n", CurrentProcess->ProcesName, CurrentProcess->ProcessNumber, numDll);
 	}
 	//CurrentProcess->NumberOfDlls = numDll;
 	CloseHandle(hProcess);
@@ -285,7 +211,7 @@ void MakeHeaderSnap()
 	if (!HeadSnapheder)
 	{
 		//LOG
-		return;
+		return 0;
 	}
 
 }

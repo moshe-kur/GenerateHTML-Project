@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="FileFun.c" />
     <ClCompile Include="LogFun.c" />
+    <ClCompile Include="MakeHtml.c" />
     <ClCompile Include="ManyProcess.c" />
     <ClCompile Include="StructProcessFun.c" />
     <ClCompile Include="Windows-Process-Project.c" />
@@ -138,6 +139,9 @@
     <ClInclude Include="LogFun.h" />
     <ClInclude Include="ManyProcess.h" />
     <ClInclude Include="StructProcessFun.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MakeHtml.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/2d599e81d6.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var mapNumber = 0;
+      function changeMap(action) {
+        if (action == "+") {
+          if (mapNumber != 4) {
+            mapNumber++;
+          }
+        }
+        if (action == "-") {
+          if (mapNumber != 0) {
+            mapNumber--;
+          }
+        }
+        if (mapNumber == 0) {
+          var theMap = document.getElementById("myMap");
+          theMap.src = src =
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13578.045609091609!2d35.12086526955393!3d31.701922507086422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502dbfa57125a4f%3A0x2d45eaaf6ebc1a0b!2z15HXmdeq16gg16LXmdec15nXqg!5e0!3m2!1siw!2sil!4v1667180506221!5m2!1siw!2sil";
+        }
+        if (mapNumber == 1) {
+          var theMap = document.getElementById("myMap");
+          theMap.src = src =
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6787.866120536912!2d35.06760997494229!3d31.717723501708036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502db42813dd429%3A0x50fbd56a4246cbb9!2z157XmNei!5e0!3m2!1siw!2sil!4v1667183927242!5m2!1siw!2sil";
+        }
+        if (mapNumber == 2) {
+          var theMap = document.getElementById("myMap");
+          theMap.src = src =
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13574.523559795452!2d35.23070576954532!3d31.72597635222529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x150327fa35111d11%3A0xbe84903a96e2c17c!2z15fXldee16og16nXnteV15DXnCDXlNeoINeX15XXnteULCDXmdeo15XXqdec15nXnQ!5e0!3m2!1siw!2sil!4v1667184964017!5m2!1siw!2sil";
+        }
+        if (mapNumber == 3) {
+          var theMap = document.getElementById("myMap");
+          theMap.src = src =
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54262.64099609024!2d35.35944559997328!3d31.786436217029763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15032ea9712cfb93%3A0xb69f0f43f662bd18!2z157Xotec15Qg15DXk9eV157Xmded!5e0!3m2!1siw!2sil!4v1667185023118!5m2!1siw!2sil";
+        }
+        if (mapNumber == 4) {
+          var theMap = document.getElementById("myMap");
+          theMap.src = src =
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53588.57540636888!2d35.12311644326412!3d32.91704217046906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151dc8fe03b29c25%3A0x709859e5804dc329!2z16LXm9eV!5e0!3m2!1siw!2sil!4v1667185059280!5m2!1siw!2sil";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html"><i class="fa-solid fa-house fa-lg"></i> Home</a>
+      <a href="aboutMe.html"><i class="fa-solid fa-user fa-lg"></i>About Me</a>
+    </nav>
+    <header>
+      <h2>Moshe Kurtz</h2>
+    </header>
+    <div class="about">
+      <div>
+        <a href="https://github.com/moshe-kur" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/moshe-kurtz/" target="_blank"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+      </div>
+      <img src="" alt="" />
+      <h2>The story is where i came from</h2>
+      <iframe
+        id="myMap"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13578.045609091609!2d35.12086526955393!3d31.701922507086422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502dbfa57125a4f%3A0x2d45eaaf6ebc1a0b!2z15HXmdeq16gg16LXmdec15nXqg!5e0!3m2!1siw!2sil!4v1667180506221!5m2!1siw!2sil"
+        width="400"
+        height="300"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+
+      <button class="twobtn" onclick="changeMap('+')">Next</button>
+      <button class="onebtn" onclick="changeMap('-')">Prev</button>
+
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/3BIlxc81XVo"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <!--  
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

@@ -37,7 +37,24 @@ struct Snapshot* Make20Loop(int NumberOfLoop)
 				struct Dlls* NewDll = NewCurrProcess->DllHead;
 				while (NewDll!=NULL)
 				{
-					if (strcmp(NewDll->DllName,SaveDll->DllName)!=0)
+					if (SaveDll == NULL)
+					{
+						//to enter all the new dll to the savedll
+						//malloc
+						//NewCurrProcess = NewCurrProcess->Next;
+						struct Dlls* AddDll = (struct Dlls*)malloc(sizeof(struct Dlls));
+						AddDll->DllID = NewDll->DllID;
+						strcpy(AddDll->DllName, NewDll->DllName);
+						SaveDll = AddDll;
+						AddDll->Prev = NULL;
+						AddDll->Next = NULL;
+						SaveCurrProcess->NumberOfDlls++;
+						NewDll = NewDll->Next;
+						SaveDll = SaveCurrProcess->DllHead;
+
+
+					}
+					else if (strcmp(NewDll->DllName,SaveDll->DllName)!=0)
 					{
 						if (SaveDll->Next==NULL)
 						{
@@ -69,12 +86,11 @@ struct Snapshot* Make20Loop(int NumberOfLoop)
 					}
 
 				}
-				//new-next
+				//new-next and save back to top
 				NewCurrProcess = NewCurrProcess->Next;
-				SaveCurrProcess = NewLoopSnap->ProcessHead;
+				SaveCurrProcess = SaveSnap->ProcessHead;
 
 			}
-			//לא מגיע לעאן
 			//Here if they NOT have the same name and id
 			else
 			{
@@ -108,7 +124,7 @@ struct Snapshot* Make20Loop(int NumberOfLoop)
 
 
 					NewCurrProcess = NewCurrProcess->Next;
-					SaveCurrProcess = NewLoopSnap->ProcessHead;
+					SaveCurrProcess = SaveSnap->ProcessHead;
 				}
 				else
 				{

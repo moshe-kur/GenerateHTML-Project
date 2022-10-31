@@ -4,7 +4,9 @@
 #include <conio.h>
 #include <windows.h>
 #include <psapi.h>
+#include <time.h>
 #pragma warning(disable:4996)
+
 
 struct Dlls
 {
@@ -52,8 +54,6 @@ void add(struct ProcessDetails ret);
 struct ProcessDetails PrintMemoryInfo(DWORD processID);
 struct Snapshot* MakeOneSnapshot();
 void MakeHeaderSnap();
-
-// extern ???
 
 extern struct SnapshotHeader* HeadSnapheder;
 extern struct Snapshot* CurrSnap;

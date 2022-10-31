@@ -2,6 +2,7 @@
 #include "FileFun.h"
 #include "StructProcessFun.h"
 #include "ManyProcess.h"
+#include "MakeHtml.h"
 #pragma warning(disable:4996)
 	 
 
@@ -32,7 +33,7 @@ int main()
 
 			break;
 		case 'M':
-
+			MakeHtmlIndex(HeadSnapheder);
 			break;
 		case 'R':
 			printf("%s", ResetAll());

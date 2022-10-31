@@ -19,6 +19,8 @@ void MakeFileStruct()
 	scanf(" %s", FileName);
 	sprintf(FileName, "%s.bin", FileName);
 	FILE* f = fopen(FileName, "wb");
+	//LOG fopen
+
 	fwrite(HeadSnapheder, sizeof(struct SnapshotHeader), 1, f);
 	
 	CurrSnap = HeadSnapheder->HeadSnap;
@@ -45,17 +47,19 @@ void MakeFileStruct()
 	
 
 	fclose(f);
-
+	//LOG file saved with file name
 	printf("The file is SAVE now\n");
 	}
 	else
 	{
+		//LOG header is empty
 		printf("There is no Snapshot in memory\n");
 	}
 
 }
 
-//TO-DOb finish change from fwrite to fread
+//TO-DO finish change from fwrite to fread
+//LOG like write
 void ReadFromFile()
 {
 	char FileName[30];
@@ -66,23 +70,25 @@ void ReadFromFile()
 
 	if (f)
 	{
-		struct SnapshotHeader* TheHeadSnap;
+		struct SnapshotHeader* TheHeadSnap=NULL;
 		fread(TheHeadSnap, sizeof(struct SnapshotHeader), 1, f);
-
+		int yyy;
+		yyy = 5;
+		/*
 		CurrSnap = HeadSnapheder->HeadSnap;
 		while (CurrSnap)
 		{
 			//fread
-			fwrite(CurrSnap, sizeof(struct Snapshot), 1, f);
+			fread(CurrSnap, sizeof(struct Snapshot), 1, f);
 			CurrentProcess = CurrSnap->ProcessHead;
 			while (CurrentProcess)
 			{
-				fwrite(CurrentProcess, sizeof(struct ProcessDetails), 1, f);
+				fread(CurrentProcess, sizeof(struct ProcessDetails), 1, f);
 				CurrDll = CurrentProcess->DllHead;
 				//Add all dlls
 				while (CurrDll)
 				{
-					fwrite(CurrDll, sizeof(struct Dlls), 1, f);
+					fread(CurrDll, sizeof(struct Dlls), 1, f);
 					CurrDll = CurrDll->Next;
 				}
 				CurrentProcess = CurrentProcess->Next;
@@ -90,7 +96,7 @@ void ReadFromFile()
 
 			CurrSnap = CurrSnap->Next;
 		}
-
+		*/
 
 
 		fclose(f);

@@ -30,6 +30,9 @@
     <ClCompile Include="ManyProcess.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MakeHtml.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LogFun.h">
@@ -44,5 +47,10 @@
     <ClInclude Include="ManyProcess.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MakeHtml.h">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

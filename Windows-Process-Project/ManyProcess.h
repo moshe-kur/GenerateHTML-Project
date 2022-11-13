@@ -1,2 +1,2 @@
 
-struct Snapshot* Make20Loop(int NumberOfLoop);
+struct Snapshot* Make20Loop();

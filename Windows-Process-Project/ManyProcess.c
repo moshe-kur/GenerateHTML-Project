@@ -6,14 +6,14 @@
 
 
 
-struct Snapshot* Make20Loop(int NumberOfLoop)
+struct Snapshot* Make20Loop()
 {
 
 	struct Snapshot* SaveSnap=MakeOneSnapshot();
 	struct ProcessDetails* SaveCurrProcess = SaveSnap->ProcessHead;
 	struct Dlls* SaveDll = SaveCurrProcess->DllHead;
 	//data
-	for (int i = 0; i < NumberOfLoop; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		//להוריד איידי בסוף הריצה ולשנות את הנקסט של הסנאפ שנשמר לנאל
 		struct Snapshot* NewLoopSnap=MakeOneSnapshot();
@@ -138,7 +138,9 @@ struct Snapshot* Make20Loop(int NumberOfLoop)
 		};
 		//i need?
 		//SaveCurrProcess = NewLoopSnap->ProcessHead;
+		SnapNum--;
 	};
+	SaveSnap->Next = NULL;
 	return SaveSnap;
 }
 

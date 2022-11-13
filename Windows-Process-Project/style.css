@@ -33,7 +33,7 @@ header > ul > li {
   background-color: rgba(231, 210, 108, 0.545);
 }
 .main {
-  display: flex;
+  /* display: flex; */
 }
 .main > div {
   display: inline;
@@ -54,29 +54,34 @@ header > ul > li {
 }
 .processList {
   width: 100%;
+  table-layout: fixed;
 }
-/* 
-th,
-td {
-  border: 1px solid black;
-  padding: 0 !important;
-} 
-*/
-
-.myBtn {
+.processBtn {
+  background-color: rgba(148, 227, 37, 0.697) !important;
+  position: absolute;
+  top: 80px;
+  left: 40px;
+}
+.myBtn1 {
   background-color: rgba(241, 246, 85, 0.7);
-  /* FOR EVRY SECEND LINE background-color: rgba(241, 246, 85, 0.4); */
   border-radius: 20px;
-  padding: 8px;
+  padding: 8px 0px;
   text-align: center;
-  /* border: 1px solid black; */
+  border: 1px solid rgba(246, 130, 6, 0.523);
+}
+.myBtn2 {
+  background-color: rgba(241, 246, 85, 0.4);
+  border-radius: 20px;
+  padding: 8px 0px;
+  text-align: center;
+  border: 1px solid rgba(5, 208, 239, 0.399);
 }
 .myBtnHead {
   background-color: rgba(157, 132, 5, 0.519);
   border-radius: 20px;
-  padding: 8px;
+  padding: 8px 0px;
   text-align: center;
-  /* border: 1px solid black; */
+  border: 1px solid rgba(238, 192, 10, 0.51);
 }
 .about {
   display: flex;
@@ -99,4 +104,55 @@ td {
 .twobtn {
   position: relative;
   left: 30px;
+}
+
+.dropbtn {
+  background-color: #ffa600e8;
+  color: white;
+  padding: 2px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  right: 0px;
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #eeb14ed2;
+}
+
+.processNameBTN {
+  width: 25%;
+}
+
+.nameBtn {
+  overflow: auto;
 }

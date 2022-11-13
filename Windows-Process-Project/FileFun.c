@@ -60,8 +60,10 @@ void MakeFileStruct()
 
 //TO-DO finish change from fwrite to fread
 //LOG like write
+
 void ReadFromFile()
 {
+	/*
 	char FileName[30];
 	printf("Please ENTER the file name\n");
 	scanf(" %s", FileName);
@@ -71,10 +73,9 @@ void ReadFromFile()
 	if (f)
 	{
 		struct SnapshotHeader* TheHeadSnap=NULL;
+		TheHeadSnap = (struct SnapshotHeader*)malloc(sizeof(struct SnapshotHeader));
 		fread(TheHeadSnap, sizeof(struct SnapshotHeader), 1, f);
-		int yyy;
-		yyy = 5;
-		/*
+				
 		CurrSnap = HeadSnapheder->HeadSnap;
 		while (CurrSnap)
 		{
@@ -96,7 +97,7 @@ void ReadFromFile()
 
 			CurrSnap = CurrSnap->Next;
 		}
-		*/
+		
 
 
 		fclose(f);
@@ -107,5 +108,5 @@ void ReadFromFile()
 	{
 		printf("There is no file with this name\n");
 	}
-
+	*/
 }

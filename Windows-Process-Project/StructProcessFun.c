@@ -105,6 +105,8 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 	if (GetProcessMemoryInfo(hProcess, &pmc, sizeof(pmc)))
 	{
 		CurrentProcess = (struct ProcessDetails*)malloc(sizeof(struct ProcessDetails));
+		//allocation check - Log error
+		
 		// process META-DATA
 		if (CurrSnap->ProcessHead == NULL)
 		{

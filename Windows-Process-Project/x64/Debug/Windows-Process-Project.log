@@ -1,4 +1,5 @@
 ﻿  MakeHtml.c
-  Windows-Process-Project.c
-  Generating Code...
+C:\Users\nuhah\source\repos\Windows-Process-Project\Windows-Process-Project\MakeHtml.c(60,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 2 has type 'int'
+C:\Users\nuhah\source\repos\Windows-Process-Project\Windows-Process-Project\MakeHtml.c(60,18): warning C4313: 'sprintf': '%s' in format string conflicts with argument 2 of type 'int'
+C:\Users\nuhah\source\repos\Windows-Process-Project\Windows-Process-Project\MakeHtml.c(163,9): warning C4013: 'searchDllByName' undefined; assuming extern returning int
   Windows-Process-Project.vcxproj -> C:\Users\nuhah\source\repos\Windows-Process-Project\x64\Debug\Windows-Process-Project.exe

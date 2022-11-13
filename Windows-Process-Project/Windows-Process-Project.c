@@ -24,6 +24,7 @@ int main()
 	{
 		
 		scanf(" %c", &userResponse);
+		
 
 		switch (userResponse)
 		{
@@ -31,6 +32,9 @@ int main()
 			MakeOneSnapshot();
 			printf("One snapshot Add to list\n");
 
+			break;
+		case 'A':
+			Make20Loop();
 			break;
 		case 'M':
 			MakeHtmlIndex(HeadSnapheder);

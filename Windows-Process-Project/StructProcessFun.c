@@ -161,8 +161,6 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 			if (GetModuleFileNameEx(hProcess, hMods[i], tFoundDllName, MAX_PATH))
 			{
 				// * Get the module name and handle value.
-				CurrDll = (struct Dlls*)malloc(sizeof(struct Dlls));
-			    numDll++;
 
 				//DATA
 				
@@ -170,24 +168,29 @@ struct ProcessDetails PrintMemoryInfo(DWORD processID)
 				char dllName[MAX_PATH];
 				size_t numConverted;
 				wcstombs_s(&numConverted, dllName, MAX_PATH, tFoundDllName, MAX_PATH);
-				sprintf(CurrDll->DllName, "%s", dllName);
-				//Add ID
-				CurrDll->DllID = numDll;
-
-				//META-DATA
-				if (CurrentProcess->DllHead == NULL)
+				if (numConverted!=0)
 				{
-					CurrentProcess->DllHead = CurrDll;
-					CurrDll->Prev = NULL;
-				}
-				else
-				{
-					PrevDll->Next = CurrDll;
-					CurrDll->Prev = PrevDll;
+				CurrDll = (struct Dlls*)malloc(sizeof(struct Dlls));
+			    numDll++;
+					sprintf(CurrDll->DllName, "%s", dllName);
+					//Add ID
+					CurrDll->DllID = numDll;
 
+					//META-DATA
+					if (CurrentProcess->DllHead == NULL)
+					{
+						CurrentProcess->DllHead = CurrDll;
+						CurrDll->Prev = NULL;
+					}
+					else
+					{
+						PrevDll->Next = CurrDll;
+						CurrDll->Prev = PrevDll;
+
+					}
+					CurrDll->Next = NULL;
+					PrevDll = CurrDll;
 				}
-				CurrDll->Next = NULL;
-				PrevDll = CurrDll;
 
 			}
 		}

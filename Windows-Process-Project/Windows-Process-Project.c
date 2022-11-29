@@ -17,7 +17,7 @@ int main()
 	Log("START LOG PROJECT");
 
 
-	printf("Hi Dear User \nWhat would you like to do?\n T-Take One SnapShot\n M-Make Generate HTML\n R-Reset ALL Snapshot Memory\n S-Save To File\n L-Load From File\n P-Print all list\n E-to EXIT\n");
+	printf("Hi Dear User \nWhat would you like to do?\n T-Take One SnapShot\n A-Take 20 SnapShot\n N-Take long SnapShot\n M-Make Generate HTML\n R-Reset ALL Snapshot Memory\n S-Save To File\n L-Load From File\n P-Print all list\n E-to EXIT\n");
 
 	char userResponse =0;
 	while (userResponse != 'E')
@@ -72,7 +72,7 @@ int main()
 
 			
 		}
-				printf("\nHi Dear User \nWhat would you like to do?\n T-Take One SnapShot\n M-Make Generate HTML\n R-Reset ALL Snapshot Memory\n S-Save To File\n L-Load From File\n P-Print all list\n E-to EXIT\n");
+				printf("\nHi Dear User \nWhat would you like to do?\n T-Take One SnapShot\n A-Take 20 SnapShot\n N-Take long SnapShot\n M-Make Generate HTML\n R-Reset ALL Snapshot Memory\n S-Save To File\n L-Load From File\n P-Print all list\n E-to EXIT\n");
 	}
 
 	

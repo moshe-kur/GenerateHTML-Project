@@ -257,13 +257,17 @@ int searchDllByName(char Name[500], struct DllsForHTML* search) //search if dll 
 {
 	struct DllsForHTML* curr = search;
 
-	if (curr == NULL) //list is empty- not found- return 1
+	if (curr == NULL ) //list is empty- not found- return 1
 	{
 		return 1;
 	}
 
 	while (curr != NULL)
 	{
+		if (Name == NULL)
+		{
+			return 0;
+		}
 		if (strcmp(curr->DllName, Name) == 0) //if found- return 0
 		{
 

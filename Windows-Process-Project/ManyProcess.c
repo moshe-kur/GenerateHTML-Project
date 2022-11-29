@@ -37,7 +37,7 @@ struct Snapshot* Make20Loop()
 				struct Dlls* NewDll = NewCurrProcess->DllHead;
 				while (NewDll!=NULL)
 				{
-					if (SaveDll == NULL)
+					if (SaveDll == NULL )
 					{
 						//to enter all the new dll to the savedll
 						//malloc
@@ -103,6 +103,7 @@ struct Snapshot* Make20Loop()
 					//Make new process
 					//printf("MAke NEw PROCESS");
 					struct ProcessDetails* AddProcess = (struct ProcessDetails*)malloc(sizeof(struct ProcessDetails));
+					
 					AddProcess->ProcessID = NewCurrProcess->ProcessID;
 					AddProcess->ProcessNumber = NewCurrProcess->ProcessNumber;
 					AddProcess->NumberOfDlls = NewCurrProcess->NumberOfDlls;
@@ -121,7 +122,7 @@ struct Snapshot* Make20Loop()
 					SaveCurrProcess->Next = AddProcess;
 					AddProcess->Prev = SaveCurrProcess;
 					AddProcess->Next = NULL;
-
+					AddProcess->DllHead = NewCurrProcess->DllHead;
 
 					NewCurrProcess = NewCurrProcess->Next;
 					SaveCurrProcess = SaveSnap->ProcessHead;
@@ -137,7 +138,8 @@ struct Snapshot* Make20Loop()
 			//NewCurrProcess = NewCurrProcess->Next;
 		};
 		//i need?
-		//SaveCurrProcess = NewLoopSnap->ProcessHead;
+		SaveCurrProcess = SaveSnap->ProcessHead;
+		SaveDll = SaveCurrProcess->DllHead;
 		SnapNum--;
 	};
 	SaveSnap->Next = NULL;
